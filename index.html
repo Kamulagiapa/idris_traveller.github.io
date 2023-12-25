@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="asset/style.css" >
+</head>
+<body>
+<!-- jika navbar nya ingin ada saat di scrool tambahkan class berikut 
+    1.fixed-top => navbar nya di atas dan discroll tidak akan hilang
+    2.fixed-bottom => navbarnya di bawah dan discroll tidak hilang 
+    kelemahan => akan tetutup teksnya solusi pake 
+    3.sticky-top => sama akan tetapi tidak memakan teksnya 
+-->
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-5 " href="#">
+            <img class="rounded-circle" src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="gambar" width="50px">
+        Traveller  
+        </a>
+        
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- me (margin-end)-auto itu adalah jarak antara ul dan form jadi si form itu berada di posisi paling kanan nah jika ingin hanya ada logo di kirinya bisa ganti jadi ms(margin start)-->
+            <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                <!-- kalo ingin menambahkan spasi itu pake mx-3 atau yang lainnya -->
+              <li class="nav-item ">
+                <span class="d-inline-block" data-bs-placement="bottom" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="halaman home">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="d-inline-block" data-bs-placement="bottom" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="hubungi kami">
+                  <a class="nav-link" href="#about">About</a>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="d-inline-block" data-bs-placement="bottom" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="daftar customer">
+                  <a class="nav-link" href="#pendaftar">pendaftar</a>
+                </span>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  More trip
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Foto galeri">
+                  <a class="nav-link " type="button" href="#gallery" tabindex="-1">Gallery</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--content-->
+     <div class="container-fluid banner">
+        <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+            <div class="text-white text-center w-50"> 
+              <p class="fs-4  ">
+                <marquee behavior="" direction="">Selamat datang di web muhammad idris</marquee>
+            </p>
+          <p class="d-none d-md-block">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consectetur, provident soluta fugiat fuga error deserunt necessitatibus rerum asperiores, odit molestias ab voluptatum quisquam sed quasi at inventore ut magni.
+          </p>
+          <button type="button" class="btn btn-outline-success mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Pesan</button>
+        </div>
+        </div>
+     </div>
+     <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <h5 class="modal-title ms-auto" id="exampleModalLabel">isi form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="myForm" >
+              <div class="mb-3">
+                <label for="nama" >nama </label>
+                <input type="text" class="form-control" id="nama" required>
+              </div>
+              <div class="mb-3">
+                <label for="alamat" >alamat </label>
+                <input type="text" class="form-control" id="alamat" required>
+              </div>
+              <div class="mb-3">
+                <label for="jenis" >jenis kelamin </label>
+                <select name="jenis" id="jenis" class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+                  <option selected disabled></option>
+                  <option value="1">laki-laki</option>
+                  <option value="2">perempuan</option>
+                </select>  </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">tutup</button>
+            <button type="submit" class="btn btn-primary">kirim</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+     <!--- Accordion-->
+     <div class="my-5 container col-6">
+      <h2 class="text-center mb-5">liburan seru dengan teman-teman</h2>
+     <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Pulau bali
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam dolores quae ea aliquid eaque repudiandae doloribus assumenda qui sunt vel?
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Bandung Story
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque vel beatae cupiditate eligendi sapiente eos possimus animi, quod dignissimos repellat.          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            grennland
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore perferendis est harum nam eligendi eius qui labore officia cumque repudiandae?          </div>
+        </div>
+      </div>
+    </div>
+     </div>
+     <div id="gallery" class="container-fluid bg-dark py-5">
+      <h2 class="text-center mb-4" style="color: aliceblue;">Tempat Wisata Menarik</h2>
+      <div class="container ">
+        <div id="carouselExampleControls" class="carousel slide col-6 offset-3" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="gambar">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="gambar">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://images.pexels.com/photos/672451/pexels-photo-672451.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="gambar">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+     </div>
+
+   <!-- class baru-->
+   <div class="container-fluid py-5">
+      <div class="container">
+        <h2 class="text-center">Tempat Terlaris</h2>
+        <div class="col-lg-6 d-block mx-auto mt-5">
+          <img class="img-fluid rounded" src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="gambar">
+        </div>
+      </div>
+   </div>
+
+   <!-- blokuot-->
+   <div class="container-fluid py-5 bg-dark text-light">
+    <div class="container">
+    <h2 class="text-center mb-5">Apa kata Customer kami</h2>
+    <div class="col-12 mb-4">
+      <figure >
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Kapten Patimura
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col-12 mb-4">
+      <figure >
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Kapten Patimura
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col-12 mb-4">
+      <figure >
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Kapten Patimura
+        </figcaption>
+      </figure>
+    </div>
+    </div>
+   </div>
+   <!-- card-->
+   <div class="container-fluid py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">produk kami</h2>
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img class="rounded" src="https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="foto">
+            <div class="card-body">
+              <h5 class="card-title">Pemandangan</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img class="rounded" src="https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="foto">
+            <div class="card-body">
+              <h5 class="card-title">Pemandangan</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img class="rounded" src="https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="foto">
+            <div class="card-body">
+              <h5 class="card-title">Pemandangan</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   <!-- table-->
+   <div id="pendaftar" class="container-fluid py-5">
+    <div class="container">
+      <div  class="table-responsive">
+        <table id="myTable" class="table table-hover table-sm">
+          <h2 class="text-center"> daftar customer</h2>
+          <thead>
+            <th>no</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>Jenis Kelamin</th>
+          </thead>
+          <tbody>
+            <tr><td>1</td>
+              <td>muhammad idris</td>
+              <td>kampung selamnjah desa karang tengah</td>
+              <td>laki-laki</td></tr>
+            <tr><td>1</td>
+              <td>muhammad idris</td>
+              <td>kampung selamnjah desa karang tengah</td>
+              <td>laki-laki</td></tr>
+            <tr><td>1</td>
+              <td>muhammad idris</td>
+              <td>kampung selamnjah desa karang tengah</td>
+              <td>laki-laki</td></tr>
+            <tr><td>1</td>
+              <td>muhammad idris</td>
+              <td>kampung selamnjah desa karang tengah</td>
+              <td>laki-laki</td></tr>
+          </tbody>
+         </table>
+      </div>
+      
+    </div>
+   </div>
+   <!--Form-->
+   <div id="about" class="container-fluid py-5 bg-dark text-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Hubungi Kami</h2>
+        <form id="contactForm" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Masukan nama" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Email</label>
+                <input type="email" class="form-control" id="validationCustom02" placeholder="Masukan email" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-12">
+                <label for="validationCustom03" class="form-label">Pesan</label>
+                <textarea class="form-control" name="pesan" id="validationCustom03" required></textarea>
+                <div class="invalid-feedback">Please provide a valid message.</div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">Agree to terms and conditions</label>
+                    <div class="invalid-feedback">You must agree before submitting.</div>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+              <button id="submitBtn" class="btn btn-primary form-control" type="submit">
+                <div class="spinner-border spinner-border-sm d-none" role="status" id="loadingSpinner">
+                    <span class="visually-hidden"></span>
+                </div>
+                Kirim
+            </button></div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Toast -->
+<div class="col-12 " >
+  <div class="position-fixed top-0 start-50 translate-middle-x p-3 mt-5"  style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header " >
+            <img style="width: 1rem;" src="https://images.pexels.com/photos/351263/pexels-photo-351263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="rounded me-2" alt="gambar">
+            <strong class="me-auto">oke!!</strong>
+            <small>Now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            data berhasil di simpan
+        </div>
+    </div>
+  </div>
+</div>
+<footer class="bg-ligt text-dark text-center py-3">
+  <p class="mb-0">&copy; 2023 Muhammad Idris. All rights reserved.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="asset/script.js"></script>
+
+    
+</body>
+</html>
